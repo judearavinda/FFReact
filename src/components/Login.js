@@ -7,16 +7,18 @@ export default function Login() {
   const onSubmit = data => { 
     console.log(data);
     console.log("what up yo");
-    var bodyFormData = new FormData();
-    bodyFormData.set("email", data.Email);
-    bodyFormData.set("password", data.Password);
-    axios({
-      method: 'post',
-      url: 'http://127.0.0.1:8000/api/user/login',
-      data: bodyFormData,
-      headers: {'Content-Type': "application/json"}
-      })
-      .then(function (response) {
+    console.log('login clicked')
+    let formData = JSON.stringify({
+        email: data.Email,
+        password: data.Password
+    })
+
+    axios.post('http://127.0.0.1:8000/api/user/login', formData, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*'
+        }
+    }).then(function (response) {
           //handle success
           console.log(response);
       })
@@ -28,8 +30,8 @@ export default function Login() {
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="email" placeholder="Email" name="Email" ref={register({required: true})} />
-      <input type="text" placeholder="Password" name="Password" ref={register({required: true, min: 8})} />
+      <input type="email" placeholder="Email" value ="darkpeople1@hotmail.com" name="Email" ref={register({required: true})} />
+      <input type="text" placeholder="Password" value ="password" name="Password" ref={register({required: true, min: 8})} />
       <input type="submit" />
     </form>
   );
