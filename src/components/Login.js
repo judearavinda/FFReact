@@ -12,9 +12,9 @@ export default function Login() {
     bodyFormData.set("password", data.Password);
     axios({
       method: 'post',
-      url: 'localhost:8000/api/user/login',
+      url: 'http://127.0.0.1:8000/api/user/login',
       data: bodyFormData,
-      headers: {'Content-Type': "application/json" }
+      headers: {'Content-Type': "application/json"}
       })
       .then(function (response) {
           //handle success
@@ -22,7 +22,6 @@ export default function Login() {
       })
       .catch(function (error) {
           //handle error
-          console.log("what up")
           console.log(error);
       })
   }
