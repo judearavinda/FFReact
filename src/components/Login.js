@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios'
 
 export default function Login() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = data => { 
     console.log(data);
     console.log("what up yo");
@@ -13,10 +13,9 @@ export default function Login() {
         password: data.Password
     })
 
-    axios.post('http://127.0.0.1:8000/api/user/login', formData, {
+    axios.post('http://localhost:8000/api/user/login', formData, {
         headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':'*'
+            'Content-Type': 'application/json'
         }
     }).then(function (response) {
           //handle success
