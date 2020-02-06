@@ -14,7 +14,7 @@ export default function PrivateRoute({ children, ...rest }) {
         <Route
             {...rest}
             render={({ location }) =>
-                getToken() ? (
+            isLoggedIn() ? (
                     children
                 ) : (
                         <Redirect
@@ -29,7 +29,8 @@ export default function PrivateRoute({ children, ...rest }) {
     );
 }
 
-function getToken() {
+export function isLoggedIn() {
     const cookies = new Cookies();
-    return cookies.get('tokenLogin');
+    console.log(cookies.get('tokenLogin'))
+    return cookies.get('tokenLogin')
 }

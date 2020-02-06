@@ -22,7 +22,7 @@ export default function Login() {
           console.log(cookies.get('tokenLogin'));
           console.log(response);
           cookies.set('tokenLogin', response.data.account.token);
-          console.log(cookies.get('tokenLogin'));
+          window.$isAuthenticated = true;
       })
       .catch(function (error) {
           //handle error

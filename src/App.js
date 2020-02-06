@@ -6,6 +6,7 @@ import Register from './components/Register'
 import SubmitPrediction from './components/SubmitPrediction'
 import "./styles.css";
 import PrivateRoute from './functions/PrivateRoute'
+import Navbar from './components/Navbar'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,24 +21,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <Router>
           <div>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/register">Register</Link>
-                </li>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-
-                <li>
-                  <Link to="/dashboard">Dashboard</Link>
-                </li>
-              </ul>
-            </nav>
-
+            <Navbar/>
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
             <Switch>
