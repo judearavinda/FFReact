@@ -7,7 +7,6 @@ export default function Login() {
   const { register, handleSubmit } = useForm();
   const onSubmit = data => { 
     console.log(data);
-    console.log("what up yo");
     console.log('login clicked')
     let formData = JSON.stringify({
         email: data.Email,
@@ -20,6 +19,7 @@ export default function Login() {
     }).then(function (response) {
           //handle success
           const cookies = new Cookies();
+          console.log(cookies.get('tokenLogin'));
           console.log(response);
           cookies.set('tokenLogin', response.data.account.token);
           console.log(cookies.get('tokenLogin'));
