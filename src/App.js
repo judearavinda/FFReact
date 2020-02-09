@@ -5,7 +5,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import SubmitPrediction from './components/SubmitPrediction'
 import "./styles.css";
-import PrivateRoute from './functions/PrivateRoute'
+import { PrivateRoute, isLoggedIn }from './functions/PrivateRoute'
 import Navbar from './components/Navbar'
 import {
   BrowserRouter as Router,
@@ -14,14 +14,23 @@ import {
   Link
 } from "react-router-dom";
 
-function App() {
+var isAuthenticated;
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    //var isLoggedIn = isLoggedIn();
+    this.state = {isAuthenticated : true};
+  }
+
+
+render() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Router>
           <div>
-            <Navbar/>
+            <Navbar count={this.state.isAuthenticated} changeAuthentication={(isAuthenticated) => this.setState({isAuthenticated})}/>
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
             <Switch>
@@ -40,6 +49,7 @@ function App() {
       </header>
     </div>
   );
+}
 }
 
 export default App;

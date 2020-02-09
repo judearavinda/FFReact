@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 
-export default function PrivateRoute({ children, ...rest }) {
+export function PrivateRoute({ children, ...rest }) {
     return (
         <Route
             {...rest}
@@ -32,5 +32,18 @@ export default function PrivateRoute({ children, ...rest }) {
 export function isLoggedIn() {
     const cookies = new Cookies();
     console.log(cookies.get('tokenLogin'))
+    //this.setState({ isAuthenticated: true });
     return cookies.get('tokenLogin')
 }
+
+export function Logout() {
+      console.log("Logout Pressed PrivateRoute");
+      const cookies = new Cookies();
+      //this.setState({ isAuthenticated: false });
+      cookies.set('tokenLogin', null);
+      console.log(cookies.get('tokenLogin'))
+    return (
+      <p>You've been logged out</p>
+    );
+  }
+  

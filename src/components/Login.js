@@ -19,7 +19,6 @@ export default function Login() {
     }).then(function (response) {
           //handle success
           const cookies = new Cookies();
-          console.log(cookies.get('tokenLogin'));
           console.log(response);
           cookies.set('tokenLogin', response.data.account.token);
           window.$isAuthenticated = true;

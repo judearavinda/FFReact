@@ -1,48 +1,52 @@
 import React from 'react';
-import { isLoggedIn } from '../functions/PrivateRoute'
+import { isLoggedIn, Logout } from '../functions/PrivateRoute'
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
 
-    if (isLoggedIn()){
-        return <NavbarLoggedIn />
-    } else {
-        return <NavbarLoggedOut />
+export default class NavBar extends React.Component {
+    render() {
+        if (props.isAuthenticated) {
+            return <NavbarLoggedIn {...props.changeAuthentication}/>
+        } else {
+            return <NavbarLoggedOut/>
+        }
     }
-
 }
 
+class NavbarLoggedIn extends React.Component() {
+    //function logout() {
+    //    console.log("Logout Pressed Navbar")
+    //    Logout();
+    //}
+    render() {
+        return 
+        (<nav>
+            <button>
+                <Link to="/">Home</Link>
+            </button>
+            <button>
+                <Link to="/dashboard">Dashboard</Link>
+            </button>
+            <button onClick={() => props.changeAuthentication(false)}>+</button>
+            <button onClick={logout}>
+                Logout
+            </button>
+        </nav>);
+    }
+}
 
-
-function NavbarLoggedIn(props){
+function NavbarLoggedOut(props) {
     return (<nav>
-    <ul>
-        <li>
+        <button>
             <Link to="/">Home</Link>
-        </li>
-        <li>
-            <Link to="/logout">Logout</Link>
-        </li>
-        <li>
-            <Link to="/dashboard">Dashboard</Link>
-        </li>
-    
-    </ul>
+        </button>
+        <button>
+            <Link to="/register">Register</Link>
+        </button>
+        <button>
+            <Link to="/login">Login</Link>
+        </button>
+
     </nav>);
 }
 
-function NavbarLoggedOut(props){
-return (<nav>
-<ul>
-    <li>
-        <Link to="/">Home</Link>
-    </li>
-    <li>
-        <Link to="/register">Register</Link>
-    </li>
-    <li>
-        <Link to="/login">Login</Link>
-    </li>
-</ul>
-</nav>);
-}
